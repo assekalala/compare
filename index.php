@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>Compare Transactions</title>
-  <script src="jquery.min.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script language="Javascript">
   $(document).ready(function(){
     $("button").click(function(){
