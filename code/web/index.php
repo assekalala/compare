@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>Compare Transactions</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <script src="js/jquery.min.js"></script>
   <script language="Javascript">
   $(document).ready(function(){
@@ -82,7 +83,8 @@
  <fieldset id="unmatched">
    <legend>Unmatched Report</legend>
    <div style="float: left; with: 50%; border: 1px solid #ccc; padding: 10px;">
-     <table>
+     <h3><?= $_FILES['file1']['name'] ?></h3>
+     <table class="table table-striped">
        <tr><td>Date</td><td>Reference</td><td>Amount</td></tr>
        <?php
           foreach($unique_to_file1 as $unique_row) {
@@ -97,7 +99,8 @@
      </table>
    </div>
    <div  style="float: right; with: 50%; border: 1px solid #ccc; padding: 10px;">
-     <table>
+     <h3><?= $_FILES['file2']['name'] ?></h3>
+     <table class="table table-striped">
        <tr><td>Date</td><td>Reference</td><td>Amount</td></tr>
        <?php
           foreach($unique_to_file2 as $unique_row) {
