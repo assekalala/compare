@@ -2,6 +2,7 @@
 <head>
   <title>Compare Transactions</title>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
   <script src="js/jquery.min.js"></script>
   <script language="Javascript">
   $(document).ready(function(){
@@ -13,9 +14,10 @@
 </head>
 
 <body>
+<div class="container">
 <form method="post" enctype="multipart/form-data">
- <fieldset>
-  <legend>Specify files to compare:</legend>
+ <fieldset class="fieldset-border">
+  <legend class="fieldset-border">Specify files to compare:</legend>
   Select file 1: <input type="file" name="file1" required><br>
   Select file 2: <input type="file" name="file2" required>
   <input type="submit" value="Compare">
@@ -57,17 +59,17 @@
  ?>
  <br>
 
- <fieldset>
-   <legend>Comparison results</legend>
-   <div width="100%">
-     <div style="float: left; with: 50%; border: 1px solid #ccc; padding: 10px;">
+ <fieldset class="fieldset-border">
+   <legend class="fieldset-border">Comparison results</legend>
+   <div class="row">
+     <div class="col-6" style="border: 1px solid #ccc; padding: 10px; margin-right: 25px; margin-left: 25px;">
        <h3><?= $_FILES['file1']['name'] ?></h3>
        <p>Total Records: <?= count($file1_records); ?></p>
        <p>Matching Records: <?= count($file1_records) - count($unique_to_file1) - 1; ?></p>
        <p>Unmatched Records: <?= count($unique_to_file1); ?></p>
      </div>
 
-     <div  style="float: right; with: 50%; border: 1px solid #ccc; padding: 10px;">
+     <div  class="col-5" style="border: 1px solid #ccc; padding: 10px; " >
        <h3><?= $_FILES['file2']['name'] ?></h3>
        <p>Total Records: <?= count($file2_records); ?></p>
        <p>Matching Records: <?= count($file2_records) - count($unique_to_file2) - 1; ?></p>
@@ -75,48 +77,50 @@
      </div>
    </div>
    <br><br>
-   <div style="text-alignment: center"><button>Unmatched Report</button></div>
+   <div style="text-align: center"><button>Unmatched Report</button></div>
  </fieldset>
 
  <br />
 
- <fieldset id="unmatched">
-   <legend>Unmatched Report</legend>
-   <div style="float: left; with: 50%; border: 1px solid #ccc; padding: 10px;">
-     <h3><?= $_FILES['file1']['name'] ?></h3>
-     <table class="table table-striped">
-       <tr><td>Date</td><td>Reference</td><td>Amount</td></tr>
-       <?php
-          foreach($unique_to_file1 as $unique_row) {
-            echo "<tr>";
-            // var_dump($unique_row);
-            echo "<td>". $unique_row[1] ."</td>";
-            echo "<td>". $unique_row[7] ."</td>";
-            echo "<td>". $unique_row[2] ."</td>";
-            echo "</tr>";
-          }
-       ?>
-     </table>
-   </div>
-   <div  style="float: right; with: 50%; border: 1px solid #ccc; padding: 10px;">
-     <h3><?= $_FILES['file2']['name'] ?></h3>
-     <table class="table table-striped">
-       <tr><td>Date</td><td>Reference</td><td>Amount</td></tr>
-       <?php
-          foreach($unique_to_file2 as $unique_row) {
-            echo "<tr>";
-            // var_dump($unique_row);
-            echo "<td>". $unique_row[1] ."</td>";
-            echo "<td>". $unique_row[7] ."</td>";
-            echo "<td>". $unique_row[2] ."</td>";
-            echo "</tr>";
-          }
-       ?>
-     </table>
-   </div>
+ <fieldset id="unmatched" class="fieldset-border">
+   <legend class="fieldset-border">Unmatched Report</legend>
+   <div class="row">
+     <div class="col-6">
+       <h3><?= $_FILES['file1']['name'] ?></h3>
+       <table class="table table-striped table-condensed">
+         <tr><td>Date</td><td>Reference</td><td>Amount</td></tr>
+         <?php
+            foreach($unique_to_file1 as $unique_row) {
+              echo "<tr>";
+              // var_dump($unique_row);
+              echo "<td>". $unique_row[1] ."</td>";
+              echo "<td>". $unique_row[7] ."</td>";
+              echo "<td>". $unique_row[2] ."</td>";
+              echo "</tr>";
+            }
+         ?>
+       </table>
+     </div>
+     <div class="col-6">
+       <h3><?= $_FILES['file2']['name'] ?></h3>
+       <table class="table table-striped table-condensed">
+         <tr><td>Date</td><td>Reference</td><td>Amount</td></tr>
+         <?php
+            foreach($unique_to_file2 as $unique_row) {
+              echo "<tr>";
+              // var_dump($unique_row);
+              echo "<td>". $unique_row[1] ."</td>";
+              echo "<td>". $unique_row[7] ."</td>";
+              echo "<td>". $unique_row[2] ."</td>";
+              echo "</tr>";
+            }
+         ?>
+       </table>
+     </div>
+   </div/>
  </fieldset>
 
  <?php } ?>
-
+</div>
 </body>
 </html>
